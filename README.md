@@ -1,6 +1,8 @@
-# This project is made for an assignment at Object Oriented Programming Class during 2021-Fall semester.
+# CovidNow in JavaFx
 
-## The assignment will be mesured by some requirements below.
+This project is made for an assignment at Object Oriented Programming Class during 2021-Fall semester.
+
+The assignment will be mesured by some requirements below.
 
 1. explaining the project
 2. inheritance class

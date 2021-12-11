@@ -7,6 +7,7 @@ public class ModelBuilder {
 	int isol_ing_cnt;
 	int over_flow_cnt;
 	int local_occ_cnt;
+	String update_Dt;
 
 	public ModelBuilder setName(String name) {
 		this.name = name;
@@ -38,12 +39,19 @@ public class ModelBuilder {
 		return this;
 	}
 
+	public ModelBuilder setUpdate_Dt(String update_dt) {
+		this.update_Dt = update_dt;
+		return this;
+	}
 	public DataModel build() {
 		return new DataModel(name,
 				death_cnt,
 				def_cnt,
 				isol_ing_cnt,
 				over_flow_cnt,
-				local_occ_cnt);
+				local_occ_cnt,
+				update_Dt);
 	}
+
+
 }

@@ -20,7 +20,7 @@ public class TimeUtil implements Runnable {
 	public void run() {
 		while (true) {
 			String strDate = getNow();
-			System.out.println(strDate);
+//			System.out.println(strDate);
 			try {
 				Thread.sleep(999);
 			} catch (InterruptedException e) {

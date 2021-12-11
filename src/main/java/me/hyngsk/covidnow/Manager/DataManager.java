@@ -7,30 +7,18 @@
 
 package me.hyngsk.covidnow.Manager;
 
-import me.hyngsk.covidnow.Model.DataModel;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 
 public class DataManager {
-	private ArrayList<DataModel> sharedDataJson;
-	private DataModel sharedDataMap;
+	private Object sharedData;
 
 	private boolean isReady;
 
 	public Object getSharedData() {
-		return sharedDataJson;
+		return sharedData;
 	}
 
-
-	public void setSharedData(ArrayList<DataModel> sharedData) {
-		this.sharedDataJson = sharedData;
-	}
-
-	public void setSharedData(DataModel sharedData) {
-		this.sharedDataMap = sharedData;
+	public void setSharedData(Object sharedData) {
+		this.sharedData = sharedData;
 	}
 
 	public boolean isReady() {
@@ -41,8 +29,4 @@ public class DataManager {
 		this.isReady = ready;
 	}
 
-	public static void consumer(DataModel dataModel){
-		System.out.println(dataModel);
-
-	}
 }

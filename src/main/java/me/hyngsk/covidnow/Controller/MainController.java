@@ -17,7 +17,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.util.Duration;
-import me.hyngsk.covidnow.Api.ApiService;
 import me.hyngsk.covidnow.MainApplication;
 import me.hyngsk.covidnow.Manager.DataConsumer;
 import me.hyngsk.covidnow.Manager.DataManager;
@@ -26,14 +25,19 @@ import me.hyngsk.covidnow.Model.DataModel;
 import me.hyngsk.covidnow.Model.Options;
 import me.hyngsk.covidnow.Utils.TimeUtil;
 
-import static me.hyngsk.covidnow.Model.Options.total;
+import java.util.ArrayList;
+
+import static me.hyngsk.covidnow.Model.Options.All;
 
 public class MainController {
 	private MainApplication mainApp;
 	private final DataManager dataManager = new DataManager();
-	public DataModel model;
-	public static DataModel consumed = new DataModel();
 
+	public static DataModel consumed;
+	public static ArrayList<DataModel> consumed_arr;
+
+//	@FXML
+//	private BorderPane rootView;
 	//Top HBox
 	@FXML
 	private Button inquiryBtn;
@@ -48,20 +52,11 @@ public class MainController {
 	@FXML
 	private ScrollPane bottomScrollpane;
 
-	private ApiService apiService;
-
-	public MainController(/*모델*/) {
-//		this.subject= subject;
-//		subject.addObserver(this);
-	}
-
 	@FXML
 	private void initialize() {
 		initClock();
-		apiService = new ApiService();
 		optionCbox.setItems(FXCollections.observableArrayList(Options.values()));
-		optionCbox.setValue(total);
-
+		optionCbox.setValue(All);
 
 	}
 
@@ -81,9 +76,7 @@ public class MainController {
 	@FXML
 	private void InquiryBtnClk() throws InterruptedException {
 		// data
-		System.out.println();
-		System.out.println(model.toString());
-		System.out.println();
+
 		DataProducer dataProducer = new DataProducer(optionCbox.getValue());
 		DataConsumer dataConsumer = new DataConsumer();
 		dataProducer.dataManager = dataManager;
@@ -91,39 +84,18 @@ public class MainController {
 		dataProducer.run();
 		dataConsumer.start();
 		dataConsumer.join();
-		model = consumed;
-		System.out.println();
-		System.out.println(model.toString());
-		System.out.println();
-
-	}
-
-	public static void consumer(DataModel dataModel) {
-		consumed = dataModel;
-	}
-
-	public void initModel(DataModel k) {
-		if (model != null) {
-			throw new IllegalStateException("Model can only be initialized once");
+		String time=null;
+		if (optionCbox.getValue().equals(All)){
+			System.out.println(consumed_arr);
+			time = consumed_arr.get(0).getUpdate_dt();
 		}
-		model = k;
+		else{
+			System.out.println(consumed);
+			time = consumed.getUpdate_dt();
 
-//		model.currentPersonProperty().addListener((obs, oldPerson, newPerson) -> {
-//			if (oldPerson != null) {
-//				firstNameField.textProperty().unbindBidirectional(oldPerson.firstNameProperty());
-//				lastNameField.textProperty().unbindBidirectional(oldPerson.lastNameProperty());
-//				emailField.textProperty().unbindBidirectional(oldPerson.emailProperty());
-//			}
-//			if (newPerson == null) {
-//				firstNameField.setText("");
-//				lastNameField.setText("");
-//				emailField.setText("");
-//			} else {
-//				firstNameField.textProperty().bindBidirectional(newPerson.firstNameProperty());
-//				lastNameField.textProperty().bindBidirectional(newPerson.lastNameProperty());
-//				emailField.textProperty().bindBidirectional(newPerson.emailProperty());
-//			}
-//		});
+		}
+		inquiryTimeLabel.setText((String) time.subSequence(0, 19));
 	}
+
 
 }

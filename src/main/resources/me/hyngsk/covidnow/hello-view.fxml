@@ -4,6 +4,9 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -16,16 +19,13 @@
             <children>
                 <Button fx:id="exitBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="216.0" text="종료" textAlignment="CENTER" />
                 <Region prefHeight="304.0" prefWidth="146.0" VBox.vgrow="ALWAYS" />
-                <Label text="조회시간" />
-                <Label fx:id="inquiryTimeLabel" text="MM/DD/YY HH:MM:ss" />
+                <Label text="데이터 생성 시간" />
+                <Label fx:id="inquiryTimeLabel" prefHeight="17.0" prefWidth="131.0" />
                 <Label text="현재시간" />
                 <Label fx:id="nowTimeLabel" text="MM/DD/YY HH:MM:ss" />
             </children>
         </VBox>
     </right>
-    <center>
-        <HBox fx:id="mainView" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-    </center>
     <top>
         <HBox fx:id="topView" alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="800.0" BorderPane.alignment="CENTER">
             <children>
@@ -42,4 +42,36 @@
             </content>
         </ScrollPane>
     </bottom>
+   <center>
+      <SplitPane dividerPositions="0.7338957055214724" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TableView prefHeight="447.0" prefWidth="475.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="88.0" text="Label" />
+                  <Label layoutX="14.0" layoutY="180.0" text="Label" />
+                  <Label layoutX="14.0" layoutY="134.0" text="Label" />
+                  <Label layoutX="14.0" layoutY="224.0" text="Label" />
+                  <Label layoutX="14.0" layoutY="267.0" text="Label" />
+                  <Label layoutX="14.0" layoutY="316.0" text="Label" />
+                  <Label layoutX="85.0" layoutY="88.0" text="Label" />
+                  <Label layoutX="85.0" layoutY="134.0" text="Label" />
+                  <Label layoutX="85.0" layoutY="180.0" text="Label" />
+                  <Label layoutX="85.0" layoutY="224.0" text="Label" />
+                  <Label layoutX="85.0" layoutY="267.0" text="Label" />
+                  <Label layoutX="85.0" layoutY="316.0" text="Label" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
 </BorderPane>

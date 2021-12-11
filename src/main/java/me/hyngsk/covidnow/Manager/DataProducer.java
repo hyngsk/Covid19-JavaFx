@@ -7,7 +7,6 @@
 
 package me.hyngsk.covidnow.Manager;
 
-import javafx.scene.control.ComboBox;
 import me.hyngsk.covidnow.Api.ApiService;
 import me.hyngsk.covidnow.Model.DataModel;
 import me.hyngsk.covidnow.Model.Options;
@@ -33,13 +32,13 @@ public class DataProducer implements Runnable {
 			System.out.println("------------------------------------------producer-------------------------------------------------");
 			if (optionCBoxValue.equals(Options.All.toString())) {
 				ArrayList<DataModel> income = (ArrayList<DataModel>) apiService.getDataModel();
+				System.out.println(income);
 				if (!dataManager.isReady()) {
 					dataManager.setSharedData(income);
 					dataManager.setReady(true);
 				}
 			} else {
 				DataModel income = (DataModel) apiService.getDataModel(optionCBoxValue);
-				// TODO: 12/3/21 find by optionCBoxValue
 				System.out.println(income);
 				if (!dataManager.isReady()) {
 					dataManager.setSharedData(income);

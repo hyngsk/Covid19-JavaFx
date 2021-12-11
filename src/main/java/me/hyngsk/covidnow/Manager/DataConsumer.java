@@ -8,8 +8,9 @@
 package me.hyngsk.covidnow.Manager;
 
 import me.hyngsk.covidnow.Controller.MainController;
-import me.hyngsk.covidnow.Model.ModelBuilder;
+import me.hyngsk.covidnow.Model.DataModel;
 
+import java.util.ArrayList;
 
 
 public class DataConsumer extends Thread {
@@ -19,19 +20,20 @@ public class DataConsumer extends Thread {
 	public void run() {
 		System.out.println("------------------------------------------consumer-------------------------------------------------");
 		if (dataManager.isReady()) {
-//			System.out.println(dataManager.getSharedData());
-
-			MainController.consumer(new ModelBuilder()
-					.setName("sdf")
-					.setDef_cnt(2)
-					.setDeath_cnt(3)
-					.setIsol_ing_cnt(3)
-					.setOver_flow_cnt(3)
-					.setLocal_occ_cnt(3)
-					.build());
-//			System.out.println(consumed.toString());
+			Object sharedData = dataManager.getSharedData();
+			consumer(sharedData);
 			dataManager.setReady(false);
 		}
+	}
+	public static void consumer(Object dataModel) {
+		if(dataModel instanceof DataModel){
+			MainController.consumed = (DataModel)dataModel;
+
+		}
+		else if(dataModel instanceof ArrayList<?>){
+			MainController.consumed_arr = (ArrayList<DataModel>) dataModel;
+		}
+
 	}
 }
 

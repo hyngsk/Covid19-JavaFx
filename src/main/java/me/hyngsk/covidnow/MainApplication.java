@@ -15,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import me.hyngsk.covidnow.Controller.MainController;
-import me.hyngsk.covidnow.Model.DataModel;
 
 import java.io.IOException;
 
@@ -34,8 +33,8 @@ import java.io.IOException;
 9. Wrapper 객체의 박싱/언박싱
 10. 예외처리 *
 11. 다중인터페이스
-12. 다중스레드(Thread)
-13. 다중스레드(Runnable)
+12. 다중스레드(Thread) *
+13. 다중스레드(Runnable) *
 14. 코드 설명 동영상
 
  */
@@ -52,7 +51,7 @@ public class MainApplication extends Application {
 			scene = new Scene(root);
 			MainController controller = fxmlLoader.getController();
 			controller.setMainApp(this);
-			controller.initModel(new DataModel());
+//			controller.initModel(new DataModel());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
